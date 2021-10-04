@@ -32,6 +32,7 @@ class DryJob(Job):
         """Wrap the command, but we don't need to anything"""
         return ""
 
+
 class PipenDryScheduler(Scheduler):
     """The dry run scheduler"""
 
@@ -64,6 +65,7 @@ class PipenDryScheduler(Scheduler):
             if typ == ProcOutputType.DIR:
                 await a_mkdir(job.output[key], parents=True, exist_ok=True)
         return f"DRY-{job.index}"
+
 
 class PipenDry:
     """Implement some hooks to modify settings and print information"""
