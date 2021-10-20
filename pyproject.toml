@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "pipen-dry"
-version = "0.0.1"
+version = "0.0.2"
 description = "Dry runner for pipen pipelines"
 authors = ["pwwang <pwwang@pwwang.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.7.1"
-pipen = "^0.1.2"
+pipen = "^0.2"
 
 [tool.poetry.dev-dependencies]
 
