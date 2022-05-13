@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pipen-dry"
-version = "0.0.2"
+version = "0.1.0"
 description = "Dry runner for pipen pipelines"
 authors = ["pwwang <pwwang@pwwang.com>"]
 license = "MIT"
