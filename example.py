@@ -5,7 +5,7 @@ from pipen import Proc, Pipen
 class P1(Proc):
     input = "infile:file"
     output = "outfile:file:out.txt"
-    script = "sleep 3; echo whatever > {{out.outfile}}"
+    script = "sleep 30; echo whatever > {{out.outfile}}"
 
 class P2(P1):
     requires = P1
