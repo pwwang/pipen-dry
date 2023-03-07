@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from pipen import Proc
 
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 SCHEDULER_NAME = "dry"
 
