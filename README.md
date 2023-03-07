@@ -2,7 +2,7 @@
 
 Dry runner for [pipen][1]
 
-It is useful to quickly check if there are misconfigurations for your pipeline.
+It is useful to quickly check if there are misconfigurations for your pipeline without actually running it.
 
 ## Install
 

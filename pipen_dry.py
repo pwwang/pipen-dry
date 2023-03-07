@@ -1,8 +1,9 @@
 
 """Dry run a pipeline for pipen"""
+from __future__ import annotations
 
 from pathlib import Path
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING
 
 from slugify import slugify
 from xqute.scheduler import Scheduler
@@ -28,7 +29,7 @@ logger = get_logger("dry", "info")
 class DryJob(Job):
     """The job class for the scheduler"""
 
-    def wrap_cmd(self, scheduler: "Scheduler") -> str:
+    def wrap_cmd(self, scheduler: Scheduler) -> str:
         """Wrap the command, but we don't need to anything"""
         return ""
 
@@ -48,7 +49,7 @@ class PipenDryScheduler(Scheduler):
         """We don't need to kill the job"""
         return
 
-    async def submit_job(self, job: Job) -> Union[int, str]:
+    async def submit_job(self, job: Job) -> int | str:
         """Fake job submission.
 
         Try to generate the output by types
@@ -73,7 +74,7 @@ class PipenDry:
     version = __version__
 
     @plugin.impl
-    def on_proc_init(self, proc: "Proc") -> None:
+    def on_proc_init(self, proc: Proc) -> None:
         """Modify the workdir of the process and set cache/export to False"""
         sched = get_scheduler(
             proc.scheduler or proc.pipeline.config.scheduler
@@ -91,7 +92,7 @@ class PipenDry:
         proc.export = False
 
     @plugin.impl
-    async def on_proc_start(self, proc: "Proc") -> None:
+    async def on_proc_start(self, proc: Proc) -> None:
         """Indicate the process is running in dry-run mode"""
         if proc.scheduler.name == SCHEDULER_NAME:
             proc.log(
