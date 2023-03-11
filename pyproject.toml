@@ -8,7 +8,10 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.7.1"
-pipen = "^0.5"
+pipen = "^0.6"
+
+[tool.poetry.build]
+generate-setup-file = true
 
 [tool.poetry.dev-dependencies]
 

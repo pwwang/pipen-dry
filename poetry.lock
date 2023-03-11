@@ -86,14 +86,14 @@ trio = ["trio (>=0.16,<0.22)"]
 
 [[package]]
 name = "argx"
-version = "0.2.4"
+version = "0.2.5"
 description = "Super-charged argparse for python"
 category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
 files = [
-    {file = "argx-0.2.4-py3-none-any.whl", hash = "sha256:91b7fa8aad3b770c4fe159bf37d84ba85535b73f16a25067855477fbf9d3ef1d"},
-    {file = "argx-0.2.4.tar.gz", hash = "sha256:8e56650b67ff6f00c4564906e628a6efb865534351f85512b6dd5b0f9ebff8fb"},
+    {file = "argx-0.2.5-py3-none-any.whl", hash = "sha256:a2e97ddf3d95ed79f27d38958ec7db4cc0585242fae9036aed0545594b566c3a"},
+    {file = "argx-0.2.5.tar.gz", hash = "sha256:b594d6eef0a77917113e32849e174c33dbb914edddb3589c539a1a693d226ed2"},
 ]
 
 [package.dependencies]
@@ -546,14 +546,14 @@ executing = ">1.1.0,<2.0"
 
 [[package]]
 name = "pipen"
-version = "0.5.1"
+version = "0.6.1"
 description = "A pipeline framework for python"
 category = "main"
 optional = false
 python-versions = ">=3.7.1,<4.0.0"
 files = [
-    {file = "pipen-0.5.1-py3-none-any.whl", hash = "sha256:0babf9e2e75fe95873278ee780e756535ae464f30b4e3dce0b84762a0279547a"},
-    {file = "pipen-0.5.1.tar.gz", hash = "sha256:0501d68d3207a507e22f0659a682be245c7b21598fa58c72d2d2b7f76fa05eac"},
+    {file = "pipen-0.6.1-py3-none-any.whl", hash = "sha256:c837570cd0ad8c8fee7f6e311bb26a4657990c515bdcdc3d7878e5c7527a2574"},
+    {file = "pipen-0.6.1.tar.gz", hash = "sha256:baf609eb7dde6a4512eb85591b66ca7cd5f73b5c533e39bbd6463783dfa87f30"},
 ]
 
 [package.dependencies]
@@ -958,4 +958,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.7.1"
-content-hash = "1ec2b4601499f9a0fdf5b7f6e8085f2a43845bad2cce1eccdd9ceac80296b2ce"
+content-hash = "a19663b3d3343dcbaaf7361330ac7711bceeb69a347f1ce777321abed468633c"
