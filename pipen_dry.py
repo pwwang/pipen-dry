@@ -5,7 +5,6 @@ from __future__ import annotations
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from slugify import slugify
 from xqute.scheduler import Scheduler
 from xqute.defaults import JobStatus
 from xqute.utils import a_mkdir
@@ -84,8 +83,7 @@ class PipenDry:
             return
 
         proc.__class__.workdir = (
-            Path(proc.pipeline.workdir)
-            / f"{slugify(proc.name)}.dry"
+            Path(proc.pipeline.workdir) / f"{proc.name}.dry"
         )
 
         proc.cache = False
