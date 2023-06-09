@@ -73,7 +73,7 @@ class PipenDry:
     version = __version__
 
     @plugin.impl
-    def on_proc_init(self, proc: Proc) -> None:
+    def on_proc_create(self, proc: Proc) -> None:
         """Modify the workdir of the process and set cache/export to False"""
         sched = get_scheduler(
             proc.scheduler or proc.pipeline.config.scheduler
