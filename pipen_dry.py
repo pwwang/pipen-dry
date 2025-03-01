@@ -2,14 +2,11 @@
 """Dry run a pipeline for pipen"""
 from __future__ import annotations
 
-from pathlib import Path
 from typing import TYPE_CHECKING
 
-from xqute.scheduler import Scheduler
 from xqute.defaults import JobStatus
-from xqute.utils import a_mkdir
 from pipen import plugin
-from pipen.scheduler import get_scheduler
+from pipen.scheduler import get_scheduler, SchedulerPostInit, XquteLocalScheduler
 from pipen.job import Job
 from pipen.defaults import ProcOutputType
 from pipen.utils import get_logger
@@ -25,19 +22,10 @@ SCHEDULER_NAME = "dry"
 logger = get_logger("dry", "info")
 
 
-class DryJob(Job):
-    """The job class for the scheduler"""
-
-    def wrap_cmd(self, scheduler: Scheduler) -> str:
-        """Wrap the command, but we don't need to anything"""
-        return ""
-
-
-class PipenDryScheduler(Scheduler):
+class PipenDryScheduler(SchedulerPostInit, XquteLocalScheduler):
     """The dry run scheduler"""
 
     name = SCHEDULER_NAME
-    job_class = DryJob
     version = __version__
 
     async def job_is_running(self, job: Job) -> bool:
@@ -53,17 +41,18 @@ class PipenDryScheduler(Scheduler):
 
         Try to generate the output by types
         """
-        Path(job.status_file).write_text(str(JobStatus.FINISHED))
-        Path(job.rc_file).write_text("0")
-        Path(job.stderr_file).write_text("")
-        Path(job.stdout_file).write_text("")
+        job.status_file.write_text(str(JobStatus.FINISHED))
+        job.rc_file.write_text("0")
+        job.stderr_file.write_text("")
+        job.stdout_file.write_text("")
 
         # generate output
         for key, typ in job._output_types.items():
             if typ == ProcOutputType.FILE:
-                Path(job.output[key]).write_text("")
+                job.output[key].spec.write_text("")
             if typ == ProcOutputType.DIR:
-                await a_mkdir(job.output[key], parents=True, exist_ok=True)
+                job.output[key].spec.mkdir(parents=True, exist_ok=True)
+
         return f"DRY-{job.index}"
 
 
@@ -82,9 +71,7 @@ class PipenDry:
         if sched.name != SCHEDULER_NAME:
             return
 
-        proc.__class__.workdir = (
-            Path(proc.pipeline.workdir) / f"{proc.name}.dry"
-        )
+        proc.__class__.workdir = proc.pipeline.workdir / f"{proc.name}.dry"
 
         proc.cache = False
         proc.export = False
