@@ -8,7 +8,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-pipen = "^0.15.0"
+pipen = { version = "^0.16.0a1", allow-prereleases = true }
 
 [tool.poetry.build]
 generate-setup-file = true
@@ -20,6 +20,11 @@ dry = "pipen_dry:PipenDryScheduler"
 
 [tool.poetry.plugins.pipen]
 dry = "pipen_dry:PipenDry"
+
+
+[tool.poetry.group.examples.dependencies]
+google-cloud-storage = "^3.1.0"
+python-dotenv = "^1.0.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
