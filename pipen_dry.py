@@ -1,12 +1,16 @@
-
 """Dry run a pipeline for pipen"""
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
 from xqute.defaults import JobStatus
 from pipen import plugin
-from pipen.scheduler import get_scheduler, SchedulerPostInit, XquteLocalScheduler
+from pipen.scheduler import (
+    get_scheduler,
+    SchedulerPostInit,
+    XquteLocalScheduler,
+)
 from pipen.job import Job
 from pipen.defaults import ProcOutputType
 from pipen.utils import get_logger
@@ -65,7 +69,7 @@ class PipenDry:
     def on_proc_create(self, proc: Proc) -> None:
         """Modify the workdir of the process and set cache/export to False"""
         sched = get_scheduler(
-            proc.scheduler or proc.pipeline.config.scheduler
+            proc.scheduler or proc.pipeline.config.scheduler,
         )
 
         if sched.name != SCHEDULER_NAME:
@@ -83,5 +87,5 @@ class PipenDry:
             proc.log(
                 "warning",
                 "[yellow]DRY-RUNNING THIS PROCESS[/yellow].",
-                logger=logger
+                logger=logger,
             )
