@@ -1377,4 +1377,4 @@ cloudpathlib = ">=0.21,<0.22"
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.9"
-content-hash = "e5e2a2cf6508763f1135faae89eb1b306f84214a6b8e29bd5397439fc79a8705"
+content-hash = "ec655584cdb9dc39d031ebc4d7102aa78df2a0f713c15fb31b369c14380bbb48"
