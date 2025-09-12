@@ -66,7 +66,7 @@ class PipenDry:
     version = __version__
 
     @plugin.impl
-    def on_proc_create(self, proc: Proc) -> None:
+    def on_proc_create(proc: Proc) -> None:
         """Modify the workdir of the process and set cache/export to False"""
         sched = get_scheduler(
             proc.scheduler or proc.pipeline.config.scheduler,
@@ -81,7 +81,7 @@ class PipenDry:
         proc.export = False
 
     @plugin.impl
-    async def on_proc_start(self, proc: Proc) -> None:
+    async def on_proc_start(proc: Proc) -> None:
         """Indicate the process is running in dry-run mode"""
         if proc.scheduler.name == SCHEDULER_NAME:
             proc.log(
