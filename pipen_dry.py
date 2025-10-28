@@ -56,6 +56,7 @@ class PipenDryScheduler(SchedulerPostInit, XquteLocalScheduler):
                 job.output[key].spec.write_text("")
             if typ == ProcOutputType.DIR:
                 job.output[key].spec.mkdir(parents=True, exist_ok=True)
+                job.output[key].spec.joinpath(".dry").write_text("")
 
         return f"DRY-{job.index}"
 

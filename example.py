@@ -16,8 +16,8 @@ class P1(Proc):
 
 class P2(P1):
     requires = P1
-    # If we have typo, dry-running can detect it real quick
-    # input_data = lambda ch: [ch.iloc[0,0] + "1"]
+    output = "outdir:dir:outdir"
+    script = "sleep 20; mkdir -p {{out.outdir}};"
 
 
 if __name__ == "__main__":
