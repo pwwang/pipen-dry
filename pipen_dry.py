@@ -45,18 +45,17 @@ class PipenDryScheduler(SchedulerPostInit, XquteLocalScheduler):
 
         Try to generate the output by types
         """
-        job.status_file.write_text(str(JobStatus.FINISHED))
-        job.rc_file.write_text("0")
-        job.stderr_file.write_text("")
-        job.stdout_file.write_text("")
+        await job.rc_file.a_write_text("0")
+        await job.stderr_file.a_write_text("")
+        await job.stdout_file.a_write_text("")
 
         # generate output
         for key, typ in job._output_types.items():
             if typ == ProcOutputType.FILE:
-                job.output[key].spec.write_text("")
+                await job.output[key].spec.a_write_text("")
             if typ == ProcOutputType.DIR:
-                job.output[key].spec.mkdir(parents=True, exist_ok=True)
-                job.output[key].spec.joinpath(".dry").write_text("")
+                await job.output[key].spec.a_mkdir(parents=True, exist_ok=True)
+                await job.output[key].spec.joinpath(".dry").a_write_text("")
 
         return f"DRY-{job.index}"
 
@@ -90,3 +89,9 @@ class PipenDry:
                 "[yellow]DRY-RUNNING THIS PROCESS[/yellow].",
                 logger=logger,
             )
+
+    @plugin.impl
+    async def on_job_submitted(job: Job) -> None:
+        """Log the dry run job submission"""
+        if job.proc.scheduler.name == SCHEDULER_NAME:
+            await job.set_status(JobStatus.FINISHED)
