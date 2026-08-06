@@ -1,12 +1,15 @@
 [project]
 name = "pipen-dry"
-version = "1.1.1"
+dynamic = ["version"]
 description = "Dry runner for pipen pipelines"
 authors = [{name = "pwwang", email = "pwwang@pwwang.com"}]
 license = "MIT"
 readme = "README.md"
 requires-python = ">=3.9,<4"
 dependencies = ["pipen>=1.1"]
+
+[tool.hatch.version]
+path = "pipen_dry.py"
 
 [project.optional-dependencies]
 examples = ["google-cloud-storage>=3", "python-dotenv>=1"]
