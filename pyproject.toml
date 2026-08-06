@@ -1,33 +1,25 @@
-[tool.poetry]
+[project]
 name = "pipen-dry"
 version = "1.1.1"
 description = "Dry runner for pipen pipelines"
-authors = ["pwwang <pwwang@pwwang.com>"]
+authors = [{name = "pwwang", email = "pwwang@pwwang.com"}]
 license = "MIT"
 readme = "README.md"
+requires-python = ">=3.9,<4"
+dependencies = ["pipen>=1.1"]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-pipen = {version = "1.1.*", allow-prereleases = true}
+[project.optional-dependencies]
+examples = ["google-cloud-storage>=3", "python-dotenv>=1"]
 
-[tool.poetry.build]
-generate-setup-file = true
-
-[tool.poetry.group.dev.dependencies]
-
-[tool.poetry.plugins.pipen_sched]
+[project.entry-points.pipen_sched]
 dry = "pipen_dry:PipenDryScheduler"
 
-[tool.poetry.plugins.pipen]
+[project.entry-points.pipen]
 dry = "pipen_dry:PipenDry"
 
-[tool.poetry.group.examples.dependencies]
-google-cloud-storage = "^3"
-python-dotenv = "^1"
-
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.black]
 line-length = 79
