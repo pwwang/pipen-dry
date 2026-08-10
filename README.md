@@ -1,6 +1,9 @@
-# pipen-dry
+<div align="center">
+    <img src="./logo.png" width="240px" alt="pipen-dry logo" />
 
-Dry runner for [pipen][1]
+   <p style="font-weight:bold;">Dry runner for <a href="https://github.com/pwwang/pipen" target="_blank">pipen</a></p>
+
+</div>
 
 It is useful to quickly check if there are misconfigurations for your pipeline without actually running it.
 
